@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'main/css/style-drive.css' %}" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <title>User View</title>
+  </head>
+  <body>
+    <!-- ------------------------------ NAVIGATION BAR ---------------------------------- -->
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark sticky-top">
+      <!-- Brand/logo -->
+      <a class="navbar-brand" href="#">
+        <img
+          src="{% static 'main/images/Logo.jpg' %}"
+          alt="logo"
+          style="width: 42px"
+        />
+      </a>
+
+      <!-- ---------------------------Navbar text-------------------------- -->
+      <span class="navbar-text"> Secure Drive </span>
+
+      <nav class="navbar navbar-expand-sm bg-dark">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="#"> Profile </a>
+          </li>
+        </ul>
+      </nav>
+    </nav>
+    <!-- ------------------------------ NAVIGATION BAR ---------------------------------- -->
+
+    <!-- <div class="container-fluid">
+      <h3>hey</h3>
+      <p>add in files</p>
+    </div> -->
+
+    <!-- ------------------------------ BUTTON ---------------------------------- -->
+    {{temp}}
+    <form enctype="multipart/form-data" method="post" action="/api/file">{% csrf_token %}
+      <input  type="file" name="file_data" />
+      <button type-"submit" class="addbtn" style="border-left: 1px solid royalblue">
+        <img src="{% static 'main/images/add_button.png' %}" />
+      </button>
+    </form>
+
+    <!-- <button class="addbtn" style="border-left: 1px solid rgb(39, 109, 108)"> 
+            <i class="fa fa-caret-down"></i>
+            <img src="add button.png" />
+          </button>
+          <div class="dropdown-content">
+            <ul class = "adding content">
+                <li>Create Folder</li>
+                <li>Add Folder</li>
+                <li>Add File</li>
+            </ul>  -->
+
+    <!-- ------------------------------ BUTTON ---------------------------------- -->
+
+    <!-- ------------------------------ TABLE ---------------------------------- -->
+    <br />
+    <h2>FILES ADDED</h2>
+
+    <table>
+      <tr>
+        <th>SERIAL NO.</th>
+        <th>FILE NAME</th>
+        <th>UPLOADED ON</th>
+        <th>FILE SIZE</th>
+        <th>VIEW</th>
+        {% comment %} <th>EDIT</th> {% endcomment %}
+        <th>DELETE</th>
+      </tr>
+      {% for file in files %}
+      <tr>
+        <td>{{forloop.counter}}</td>
+        <td>{{file.file_name}}</td>
+        <td>{{file.created_at}}</td>
+        <td>{{file.file_size}}</td>
+        <td>
+         <a href="/view/{{file.fid}}"> <button class="viewbtn" style="border-left: 1px solid royalblue">
+            <img src="{% static 'main/images/view_button.jpg' %}" />
+          </button></a>
+        </td>
+        {% comment %} <td>
+          <button class="editbtn" style="border-left: 1px solid royalblue">
+            <img src="{% static 'main/images/edit_button.png' %}" />
+          </button>
+        </td> {% endcomment %}
+        <td>
+          <!-- <form enctype="multipart/form-data" method="post" action="/file/delete/">{% csrf_token %} -->
+<!-- <input type="text" name="file_id" value="{{file.file_name}}" > -->
+
+<a href="/delete/{{file.fid}}"> <button type="submit" class="delbtn" style="border-left: 1px solid royalblue">
+            <img src="{% static 'main/images/delete_button.png' %}" />
+          </button></a>
+          <!-- </form> -->
+        </td>
+      </tr>
+      {% endfor %}
+      
+    </table>
+    <!-- ------------------------------ TABLE ---------------------------------- -->
+
+    <footer class="mailme sticky-bottom">
+      <p>
+        Contact Us :
+        <a href="mailto:nidhinair2910@gmail.com">securedrive@gmail.com</a>
+      </p>
+    </footer>
+  </body>
+</html>
