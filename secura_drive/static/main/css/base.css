@@ -1,0 +1,33 @@
+* {
+  margin: none;
+  padding: none;
+  box-sizing: border-box;
+}
+
+body {
+  background-image: url("../images/background.svg");
+  background-repeat: repeat;
+  background-attachment: fixed;  
+  background-size: cover;
+}
+
+.navbar {
+  padding-top: 15px;
+  padding-bottom: 15px;
+  border: 0;
+  border-radius: 0;
+  margin-bottom: 0;
+  font-size: 18px;
+  letter-spacing: 5px;
+}
+
+
+.mailme {
+  margin-top: 300px;
+  padding-top: 20px;
+  width: 100%;
+  padding-bottom: 20px;
+  background-color: #2f2f2f; /* Black Gray */
+  color: #fff;
+  text-align: center;
+}

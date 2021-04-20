@@ -1,144 +1,69 @@
-<!DOCTYPE html>
+{% extends 'main/base.html' %}
 {% load static %}
-<html lang="en">
-  <head>
-    <title>Homepage</title>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link
-      rel="stylesheet"
-      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+{% block title%}Home{% endblock title %}
+{% block content%}
+
+<!-- FIRST Container -->
+<div class="info text-center">
+  <img
+    src="{% static 'main/images/Logo.jpg' %}"
+    class="img-responsive img-circle margin"
+    style="display: inline"
+    alt="logo"
+    width="200"
+    height="200"
+  />
+  <h3 class="margin">SECURE DRIVE</h3>
+  <h3 class="margin">What is Secure Drive?</h3>
+  <p>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+    tempor incididunt ut labore et dolore magna aliqua. <br />
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, incididunt ut
+    labore et dolore magna aliqua. <br />
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+    tempor incididunt ut labore et dolore magna aliqua. <br />
+  </p>
+  <h3 class="margin">How does Secure Drive Work?</h3>
+  <p>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+    tempor incididunt ut labore et dolore magna aliqua. <br />
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, incididunt ut
+    labore et dolore magna aliqua. <br />
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+    tempor incididunt ut labore et dolore magna aliqua. <br />
+  </p>
+</div>
+
+<div class="name-footer">
+  <div class="name-footer-item">
+    <img
+      src="{% static 'main/images/profile.jpg' %}"
+      class="pictures"
+      alt="logo"
+      width="200"
+      height="200"
     />
-    <link
-      href="https://fonts.googleapis.com/css?family=Montserrat"
-      rel="stylesheet"
+    <p>YASH MEHTA</p>
+  </div>
+  <div class="name-footer-item">
+    <img
+      src="{% static 'main/images/profile.jpg' %}"
+      class="pictures"
+      alt="logo"
+      width="200"
+      height="200"
     />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-
-    <link rel="stylesheet" href="{% static 'main/css/style-homepage.css' %}" />
-
-    <title>Homepage</title>
-  </head>
-  <body>
-    <!-- Navbar -->
-    <!-- ------------------------------ NAVIGATION BAR ---------------------------------- -->
-    <nav class="navbar navbar-expand-sm bg-dark navbar-dark sticky-top">
-      <!-- Brand/logo -->
-      <a class="navbar-brand" href="#">
-        <img
-          src="{% static 'main/images/Logo.jpg' %}"
-          alt="logo"
-          style="width: 42px"
-        />
-      </a>
-
-      <!-- ---------------------------Navbar text-------------------------- -->
-      <span class="navbar-text"> Secure Drive </span>
-
-      <nav class="navbar navbar-expand-sm bg-dark">
-        <div class="rightnav">
-          <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-              <a class="nav-link" href="profile/"> Profile </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="drive/"> Drive </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="signup/"> Sign Up </a>
-            </li>
-          </ul>
-        </div>
-      </nav>
-    </nav>
-    <!-- ------------------------------ NAVIGATION BAR ---------------------------------- -->
-
-    <!-- FIRST Container -->
-    <div class="info text-center">
-      <img
-        src="{% static 'main/images/Logo.jpg' %}"
-        class="img-responsive img-circle margin"
-        style="display: inline"
-        alt="logo"
-        width="200"
-        height="200"
-      />
-      <h3 class="margin">SECURE DRIVE</h3>
-      <h3 class="margin">What is Secure Drive?</h3>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. <br />
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, incididunt ut
-        labore et dolore magna aliqua. <br />
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. <br />
-      </p>
-      <h3 class="margin">How does Secure Drive Work?</h3>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. <br />
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, incididunt ut
-        labore et dolore magna aliqua. <br />
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. <br />
-      </p>
-    </div>
-
-    <footer class="mailme sticky-bottom">
-      <table>
-        <tr>
-          <th>
-            <div class="pic">
-              <img
-                src="{% static 'main/images/profile.jpg' %}"
-                class="pictures"
-                alt="logo"
-                width="200"
-                height="200"
-              />
-            </div>
-          </th>
-          <th>
-            <div class="pic">
-              <img
-                src="{% static 'main/images/profile.jpg' %}"
-                class="pictures"
-                alt="logo"
-                width="200"
-                height="200"
-              />
-            </div>
-          </th>
-          <th>
-            <div class="pic">
-              <img
-                src="{% static 'main/images/profile.jpg' %}"
-                class="pictures"
-                alt="logo"
-                width="200"
-                height="200"
-              />
-            </div>
-          </th>
-        </tr>
-        <tr>
-          <th>TANUJ JAIN</th>
-          <th>NIDHI NAIR</th>
-          <th>OM RAWAL</th>
-        </tr>
-        <tr>
-          <th>Web Developer</th>
-          <th>Web Developer</th>
-          <th>Web Developer</th>
-        </tr>
-      </table>
-      <br />
-      <p>
-        Contact Us :
-        <a href="mailto:nidhinair2910@gmail.com">securedrive@gmail.com</a>
-      </p>
-    </footer>
-  </body>
-</html>
+    <p>NIDHI NAIR</p>
+  </div>
+  <div class="name-footer-item">
+    <img
+      src="{% static 'main/images/profile.jpg' %}"
+      class="pictures"
+      alt="logo"
+      width="200"
+      height="200"
+    />
+    <p>OM RAWAL</p>
+  </div>
+</div>
+{% endblock content%}

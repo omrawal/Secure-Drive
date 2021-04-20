@@ -1,61 +1,34 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style-user.css" />
-    <link
-      rel="stylesheet"
-      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-    />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <title>Profile</title>
-  </head>
-  <body>
-    <!-- ------------------------------ NAVIGATION BAR ---------------------------------- -->
-    <nav class="navbar navbar-expand-sm bg-dark navbar-dark sticky-top">
-      <!-- Brand/logo -->
-      <a class="navbar-brand" href="#">
-        <img src="Logo.JPG" alt="logo" style="width: 42px" />
-      </a>
+{% extends 'main/base.html' %}
+{% block title %}Profile{% endblock title %}
+{% block content%}
+<div class="userprofile text-center">
+  <br />
+  <h3 class="margin">LOREM IPSUM</h3>
+  <img
+    src="profile.jpg"
+    class="img-responsive img-circle margin"
+    style="display: inline"
+    alt="Bird"
+    width="350"
+    height="350"
+  />
+  <h3>
+    USERNAME<br />
+    _username_
+  </h3>
+</div>
 
-      <!-- ---------------------------Navbar text-------------------------- -->
-      <span class="navbar-text"> Secure Drive </span>
-
-      <nav class="navbar navbar-expand-sm bg-dark">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="#"> Drive </a>
-          </li>
-        </ul>
-      </nav>
-    </nav>
-    <!-- ------------------------------ NAVIGATION BAR ---------------------------------- -->
-
-    <!-- <div class="container-fluid">
-      <h3>hey</h3>
-      <p>add in files</p>
-    </div> -->
-
-    <div class="userprofile text-center">
-        <br>
-        <h3 class="margin">LOREM IPSUM</h3>
-        <img src="profile.jpg" class="img-responsive img-circle margin" style="display:inline" alt="Bird" width="350" height="350">
-        <h3>USERNAME<br>
-        _username_</h3>
-      </div>
-
-    <!-- Second Container -->
-    <div class="aboutuser  bg-2 text-center">
-    <h3 class="margin">About Me </h3>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. <br>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.<br> Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. <br>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. </p>
-    </div>
-
-    <footer class="mailme sticky-bottom">
-        <p>Contact Us : <a href="mailto:nidhinair2910@gmail.com">securedrive@gmail.com</a></p> 
-    </footer>
-  </body>
-</html>
+<!-- Second Container -->
+<div class="aboutuser bg-2 text-center">
+  <h3 class="margin">About Me</h3>
+  <p>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+    tempor incididunt ut labore et dolore magna aliqua. <br />Ut enim ad minim
+    veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+    commodo consequat.<br />
+    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore
+    eu fugiat nulla pariatur. <br />Excepteur sint occaecat cupidatat non
+    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+  </p>
+</div>
+{% endblock content %}

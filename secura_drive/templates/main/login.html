@@ -1,0 +1,53 @@
+{% extends 'main/base.html' %}
+{% load static %}
+{% block title%}Login{% endblock title %}
+
+{% block content%}
+<section class="login">
+  <div class="login--wrap clearfix">
+    <div class="row clearfix">
+      <div class="col col-6 login--l">
+        <div class="title"><span class="text">Login</span></div>
+        <div class="login--body">
+          <label>
+            <div class="label">Email address</div>
+            <input type="text" placeholder="john@doe.com" required />
+          </label>
+          <label>
+            <div class="label">Password</div>
+            <input type="password" placeholder="*********" required />
+          </label>
+          <div class="sbmt">
+            <button class="sbmt--btn">Login</button>
+          </div>
+        </div>
+
+      </div>
+      <div class="col col-6 login--s">
+        <div class="title"><span class="text">Signup</span></div>
+        <div class="login--body">
+          <label>
+            <div class="label">Username</div>
+            <input type="text" placeholder="john_doe" required />
+          </label>
+          <label>
+            <div class="label">Email address</div>
+            <input type="text" placeholder="john@doe.com" required />
+          </label>
+          <label>
+            <div class="label">Password</div>
+            <input type="password" placeholder="*********" required />
+          </label>
+          <label>
+            <div class="label">Confirm password</div>
+            <input type="password" placeholder="*********" required />
+          </label>
+          <div class="sbmt">
+            <button class="sbmt--btn">Signup</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock content%}

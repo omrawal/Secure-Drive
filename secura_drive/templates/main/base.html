@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'main/css/base.css' %}" />
+    <link rel="stylesheet" href="{% static 'main/css/drive.css' %}" />
+    <link rel="stylesheet" href="{% static 'main/css/homepage.css' %}" />
+    <link rel="stylesheet" href="{% static 'main/css/profile.css' %}" />
+    <link rel="stylesheet" href="{% static 'main/css/login.css' %}" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+
+    <title>{%block title%}{% endblock title %}</title>
+  </head>
+  <body>
+    <!-- ---------------------------Navbar text-------------------------- -->
+
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark sticky-top">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/">
+          <img
+            src="{% static 'main/images/Logo.jpg' %}"
+            alt="logo"
+            style="width: 45px"
+          />
+        <span class="navbar-text"> Secure Drive </span>
+        </a>
+        <ul class="navbar-nav ml-auto d-flex">
+          <li class="nav-item">
+            <a class="nav-link" href="/profile"> Profile </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/drive"> Drive </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/login"> Login </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <!-- ------------------------------ NAVIGATION BAR ---------------------------------- -->
+
+    {%block content%} {% endblock content %}
+
+    <footer class="mailme sticky-bottom">
+      <p>
+        Contact Us :
+        <a href="mailto:nidhinair2910@gmail.com">securedrive@gmail.com</a>
+      </p>
+    </footer>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  </body>
+</html>
