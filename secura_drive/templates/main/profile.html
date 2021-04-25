@@ -1,16 +1,17 @@
 {% extends 'main/base.html' %}
+{% load static %}
 {% block title %}Profile{% endblock title %}
 {% block content%}
 <div class="userprofile text-center">
   <br />
   <h3 class="margin">LOREM IPSUM</h3>
   <img
-    src="profile.jpg"
+    src="{% static 'main/images/profile.jpg' %}"
     class="img-responsive img-circle margin"
     style="display: inline"
-    alt="Bird"
-    width="350"
-    height="350"
+    alt="Display Picture"
+    width="300px"
+    height="300px"
   />
   <h3>
     USERNAME<br />
@@ -20,15 +21,23 @@
 
 <!-- Second Container -->
 <div class="aboutuser bg-2 text-center">
+  <table class = "content">
+    <tr>
+      <th>Files Stored</th>
+      <th> 20 </th>
+    </tr>
+    <tr>
+      <th>Storage Used</th>
+      <th> 1 GB </th>
+    </tr>
+  </table>
+
   <h3 class="margin">About Me</h3>
   <p>
     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
     tempor incididunt ut labore et dolore magna aliqua. <br />Ut enim ad minim
     veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
     commodo consequat.<br />
-    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore
-    eu fugiat nulla pariatur. <br />Excepteur sint occaecat cupidatat non
-    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
   </p>
 </div>
 {% endblock content %}

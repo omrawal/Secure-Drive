@@ -2,12 +2,11 @@ from django.shortcuts import render, redirect
 import requests
 import api.file_crypto as fc
 from django.http import HttpResponse
-
 from django.shortcuts import render, redirect
-from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth import authenticate, login
+from django.contrib.auth.models import User
+from django.contrib.auth import login
 from django.views.decorators.csrf import csrf_protect
-
+from .models import *
 
 # Create your views here.
 KEY = b'NtEvVBWbzSEBu6axGA21Aw6pt3MsO1zFM_mCu9Al8oM='
@@ -38,6 +37,10 @@ def drive_page(request):
     return render(request, 'main/drive.html', {"files": files})
 
 
+def profile(request):
+    return render(request, 'main/profile.html')
+
+
 def delete_file(request, id):
     x = requests.delete('http://127.0.0.1:8000/api/file/'+id)
 
@@ -59,21 +62,17 @@ def view_file(request, id):
 @csrf_protect
 def register(request):
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
-        if form.is_valid():
-            form.save()
-            username = form.cleaned_data['username']
-            password = form.cleaned_data['password1']
-            user = authenticate(username=username, password=password)
-            login(request, user)
-            return redirect('index')
-    else:
-        form = UserCreationForm()
-    context = {'form': form}
-    return render(request, 'registration/register.html', context)
+        data = request.POST
+        user = User(username=data['username'],
+                    password=data['password'], email=data['email'])
+        user.save()
+        profile = Profile(user=user)
+        profile.save()
+        return redirect('index')
+
+    return render(request, 'main/login.html')
 
 
 @csrf_protect
 def login(request):
-    # return render(request, 'registration/register.html', context)
-    pass
+    return render(request, 'main/login.html')
