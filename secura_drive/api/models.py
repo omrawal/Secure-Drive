@@ -1,6 +1,6 @@
 from django.db import models
 import uuid
-from main.models import User
+# from main.models import User
 from django.conf import settings
 
 
