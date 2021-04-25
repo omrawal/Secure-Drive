@@ -1,19 +1,8 @@
 from django.db import models
-import uuid
-# Create your models here.
+from .file_crypto import generateKey
+from django.contrib.auth.models import User
 
 
-class User(models.Model):
-    name = models.CharField(max_length=200)
-    uid = models.CharField(
-        primary_key=True, max_length=200, default=uuid.uuid4)
-
-    class Meta:
-        verbose_name = "User"
-        verbose_name_plural = "Users"
-
-    def __str__(self):
-        return self.name
-
-
-
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    cryptoKey = models.CharField(default=generateKey, max_length=200)
