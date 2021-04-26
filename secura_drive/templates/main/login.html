@@ -8,17 +8,20 @@
       <div class="col col-6 login--l">
         <div class="title"><span class="text">Login</span></div>
         <div class="login--body">
-          <label>
-            <div class="label">Email address</div>
-            <input type="text" placeholder="john@doe.com" required />
-          </label>
-          <label>
-            <div class="label">Password</div>
-            <input type="password" placeholder="*********" required />
-          </label>
-          <div class="sbmt">
-            <button class="sbmt--btn">Login</button>
-          </div>
+          <form action="{% url 'login' %}" method="post">
+            {% csrf_token %}
+            <label>
+              <div class="label">Username</div>
+              <input type="text" name="username" required />
+            </label>
+            <label>
+              <div class="label">Password</div>
+              <input type="password" name="password" required />
+            </label>
+            <div class="sbmt">
+              <button class="sbmt--btn">Login</button>
+            </div>
+          </form>
         </div>
       </div>
       <div class="col col-6 login--s">
@@ -26,22 +29,42 @@
         <div class="login--body">
           <form action="{% url 'register' %}" method="post">
             {% csrf_token %}
+            <div class="row">
+              <div class="col">
+                <label>
+                  <div class="label">First Name</div>
+                  <input type="text" name="first_name" required />
+                </label>
+              </div>
+              <div class="col">
+                <label>
+                  <div class="label">Last Name</div>
+                  <input type="text" name="last_name" required />
+                </label>
+              </div>
+            </div>
             <label>
               <div class="label">Username</div>
-              <input type="text" name="username" placeholder="user_name" required />
+              <input type="text" name="username" required />
             </label>
             <label>
               <div class="label">Email address</div>
-              <input type="email" name="email" placeholder="john@doe.com" required />
+              <input type="email" name="email" required />
             </label>
-            <label>
-              <div class="label">Password</div>
-              <input type="password" name="password" placeholder="*********" required />
-            </label>
-            <label>
-              <div class="label">Confirm password</div>
-              <input type="password" placeholder="*********" required />
-            </label>
+            <div class="row">
+              <div class="col">
+                <label>
+                  <div class="label">Password</div>
+                  <input type="password" name="password" required />
+                </label>
+              </div>
+              <div class="col">
+                <label>
+                  <div class="label">Confirm password</div>
+                  <input type="password" required />
+                </label>
+              </div>
+            </div>
             <div class="sbmt">
               <button class="sbmt--btn">Signup</button>
             </div>
