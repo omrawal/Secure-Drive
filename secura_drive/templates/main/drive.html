@@ -3,10 +3,9 @@
 {% block title%}Drive{% endblock title%}
 {% block content%} 
     <!-- ------------------------------ BUTTON ---------------------------------- -->
-    {{temp}}
-    <form enctype="multipart/form-data" method="post" action="/api/file">{% csrf_token %}
-      <input  type="file" name="file_data" />
-      <button type-"submit" class="addbtn" style="border-left: 1px solid royalblue">
+    <form enctype="multipart/form-data" method="post" action="/api/file?profile={{profile.id}}">{% csrf_token %}
+      <button type-"submit" class="addbtn" style="width:150px">
+        <input  type="file" name="file_data"/>
         <img src="{% static 'main/images/add_button.png' %}" />
       </button>
     </form>
@@ -45,9 +44,9 @@
         <td>{{file.created_at}}</td>
         <td>{{file.file_size}}</td>
         <td>
-          <button class="viewbtn" style="border-left: 1px solid royalblue">
+        <a href="/view/{{file.fid}}" target="_blank"> <button class="viewbtn" style="border-left: 1px solid royalblue">
             <img src="{% static 'main/images/view_button.jpg' %}" />
-          </button>
+          </button></a>
         </td>
         {% comment %} <td>
           <button class="editbtn" style="border-left: 1px solid royalblue">
@@ -55,9 +54,9 @@
           </button>
         </td> {% endcomment %}
         <td>
-            <button type="submit" class="delbtn" style="border-left: 1px solid royalblue">
+        <a href="/delete/{{file.fid}}"> <button type="submit" class="delbtn" style="border-left: 1px solid royalblue">
             <img src="{% static 'main/images/delete_button.png' %}" />
-          </button>
+          </button></a>
         </td>
       </tr>
       {% endfor %}

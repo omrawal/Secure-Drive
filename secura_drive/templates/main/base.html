@@ -38,7 +38,11 @@
             <a class="nav-link" href="/drive"> Drive </a>
           </li>
           <li class="nav-item">
+            {% if is_Auth %}
+            <a class="nav-link" href="/logout"> Logout </a>
+            {% else %}
             <a class="nav-link" href="/login"> Login </a>
+            {% endif %}
           </li>
         </ul>
       </div>

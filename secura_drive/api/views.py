@@ -16,21 +16,27 @@ KEY = b'NtEvVBWbzSEBu6axGA21Aw6pt3MsO1zFM_mCu9Al8oM='
 
 class FileAPIView(APIView):
     def get(self, request):
-        files = File.objects.all()
+        if 'profile' in request.GET:
+            files = File.objects.filter(owner_id=request.GET['profile'])
+        else:
+            files = File.objects.all()
         serializer = FileSerializer(files, many=True)
         return Response(serializer.data)
 
     def post(self, request):
-        file_data = request.data['file_data']
-        encrypted = fc.encrypt(request.data['file_data'].read(), KEY)
-        serializer = FileSerializer(
-            data={'file_data': str(encrypted), 'file_name': file_data.name, 'file_size': file_data.size, 'file_content_type': file_data.content_type})
-        if serializer.is_valid():
-            serializer.save()
-            # return Response(serializer.data, status=status.HTTP_201_CREATED)
-            return redirect("http://127.0.0.1:8000/drive/")
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-        # return Response("test")
+        if 'profile' in request.GET:
+            print(request.GET['profile'])
+            file_data = request.data['file_data']
+            encrypted = fc.encrypt(request.data['file_data'].read(), KEY)
+            serializer = FileSerializer(
+                data={'file_data': str(encrypted), 'file_name': file_data.name, 'file_size': file_data.size, 'file_content_type': file_data.content_type, 'owner_id':request.GET['profile']})
+            if serializer.is_valid():
+                serializer.save()
+                return redirect("http://127.0.0.1:8000/drive/")
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        else:
+            return redirect("http://127.0.0.1:8000/login/")
+        
 
 
 class FileOperations(APIView):
