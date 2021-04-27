@@ -1,8 +1,9 @@
-.info {
+.info-drive {
   padding-top: 20px;
   padding-bottom: 20px;
   text-align: center;
-  font: 20px Montserrat, sans-serif;
+  font: 20px;
+  font-family: "Lucida Console", "Courier New", monospace;
   line-height: 1.8;
 }
 
