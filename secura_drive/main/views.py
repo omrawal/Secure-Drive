@@ -8,6 +8,7 @@ from django.views.decorators.csrf import csrf_protect
 from .models import *
 from django.contrib.auth import authenticate, login as djangoLogin, logout as djangoLogout
 from django.contrib.auth.decorators import login_required
+
 # Create your views here.
 KEY = b'NtEvVBWbzSEBu6axGA21Aw6pt3MsO1zFM_mCu9Al8oM='
 
@@ -24,24 +25,35 @@ def format_bytes(size):
 
 
 def home(request):
-    return render(request, 'main/index.html',{'is_Auth':request.user.is_authenticated})
+    return render(request, 'main/index.html', {'is_Auth': request.user.is_authenticated})
+
 
 @login_required(login_url='/login')
 def drive_page(request):
     user = request.user
     profile = Profile.objects.filter(user=user)[0]
     print(profile, profile.id)
-    x = requests.get('http://127.0.0.1:8000/api/file', params={'profile':profile.id,'is_Auth':request.user.is_authenticated})
+    x = requests.get('http://127.0.0.1:8000/api/file',
+                     params={'profile': profile.id, 'is_Auth': request.user.is_authenticated})
     files = x.json()
     for file in files:
         size = format_bytes(file['file_size'])
+        # print(type(file['created_at']))
+        # date_time = datetime. strptime(file['created_at'], '%y/%m/%d %H:%M:%S')
+        # file['created_at'] = date_time.strftime("%m/%d/%Y, %H:%M:%S")
+        temp = file['created_at'][0:10]
+        temp = temp.split('-')
+        temp = temp[::-1]
+        temp = '/'.join(temp)
+        file['created_at'] = temp
         file['file_size'] = str("{:.2f}".format(size[0])) + " " + str(size[1])
-    return render(request, 'main/drive.html',{'user':user,'profile':profile, 'files':files,'is_Auth':request.user.is_authenticated})
+    return render(request, 'main/drive.html', {'user': user, 'profile': profile, 'files': files, 'is_Auth': request.user.is_authenticated})
+
 
 @login_required(login_url='/login')
 def profile(request):
     user = request.user
-    return render(request, 'main/profile.html', {'user':user,'profile':profile,'is_Auth':request.user.is_authenticated})
+    return render(request, 'main/profile.html', {'user': user, 'profile': profile, 'is_Auth': request.user.is_authenticated})
 
 
 def delete_file(request, id):
@@ -71,7 +83,8 @@ def register(request):
         user.save()
         profile = Profile(user=user)
         profile.save()
-        user = authenticate(request, username=data['username'], password=data['password'])
+        user = authenticate(
+            request, username=data['username'], password=data['password'])
         djangoLogin(request, user)
         return redirect('/drive')
 
@@ -90,6 +103,7 @@ def login(request):
         else:
             return redirect('/login')
     return render(request, 'main/login.html')
+
 
 def logout(request):
     djangoLogout(request)
