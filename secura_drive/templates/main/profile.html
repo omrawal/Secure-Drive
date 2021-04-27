@@ -5,14 +5,8 @@
 <div class="userprofile text-center">
   <br />
   <h3 class="margin">{{user.first_name}} {{user.last_name}}</h3>
-  <img
-    src="{% static 'main/images/profile.jpg' %}"
-    class="img-responsive img-circle margin"
-    style="display: inline"
-    alt="Display Picture"
-    width="300px"
-    height="300px"
-  />
+  <img src="{% static 'main/images/profile.jpg' %}" class="img-responsive img-circle margin" style="display: inline"
+    alt="Display Picture" width="300px" height="300px" />
   <h3>
     USERNAME<br />
     {{user.username}}
@@ -21,7 +15,7 @@
 
 <!-- Second Container -->
 <div class="aboutuser bg-2 text-center">
-  <table class = "content">
+  <table class="content">
     <tr>
       <th>Files Stored</th>
       <th> 20 </th>
@@ -32,12 +26,12 @@
     </tr>
   </table>
 
-  <h3 class="margin">About Me</h3>
+  <!-- <h3 class="margin">About Me</h3>
   <p>
     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
     tempor incididunt ut labore et dolore magna aliqua. <br />Ut enim ad minim
     veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
     commodo consequat.<br />
-  </p>
+  </p> -->
 </div>
 {% endblock content %}

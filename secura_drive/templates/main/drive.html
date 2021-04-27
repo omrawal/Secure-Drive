@@ -1,16 +1,16 @@
 {% extends 'main/base.html' %}
 {% load static %}
 {% block title%}Drive{% endblock title%}
-{% block content%} 
-    <!-- ------------------------------ BUTTON ---------------------------------- -->
-    <form enctype="multipart/form-data" method="post" action="/api/file?profile={{profile.id}}">{% csrf_token %}
-      <button type-"submit" class="addbtn" style="width:150px">
-        <input  type="file" name="file_data"/>
-        <img src="{% static 'main/images/add_button.png' %}" />
-      </button>
-    </form>
+{% block content%}
+<!-- ------------------------------ BUTTON ---------------------------------- -->
+<form enctype="multipart/form-data" method="post" action="/api/file?profile={{profile.id}}">{% csrf_token %}
+  <button type-"submit" class="addbtn" style="width:150px">
+    <input type="file" name="file_data" />
+    <img src="{% static 'main/images/add_button.png' %}" />
+  </button>
+</form>
 
-    <!-- <button class="addbtn" style="border-left: 1px solid rgb(39, 109, 108)"> 
+<!-- <button class="addbtn" style="border-left: 1px solid rgb(39, 109, 108)"> 
             <i class="fa fa-caret-down"></i>
             <img src="add button.png" />
           </button>
@@ -21,47 +21,53 @@
                 <li>Add File</li>
             </ul>  -->
 
-    <!-- ------------------------------ BUTTON ---------------------------------- -->
+<!-- ------------------------------ BUTTON ---------------------------------- -->
 
-    <!-- ------------------------------ TABLE ---------------------------------- -->
-    <br />
-    <h2>FILES ADDED</h2>
+<!-- ------------------------------ TABLE ---------------------------------- -->
+<br />
+<h2>FILES ADDED</h2>
 
-    <table class="items-table">
-      <tr class="items-table-row">
-        <th>SERIAL NO.</th>
-        <th>FILE NAME</th>
-        <th>UPLOADED ON</th>
-        <th>FILE SIZE</th>
-        <th>VIEW</th>
-        {% comment %} <th>EDIT</th> {% endcomment %}
-        <th>DELETE</th>
-      </tr>
-      {% for file in files %}
-      <tr class="items-table-row">
-        <td>{{forloop.counter}}</td>
-        <td>{{file.file_name}}</td>
-        <td>{{file.created_at}}</td>
-        <td>{{file.file_size}}</td>
-        <td>
-        <a href="/view/{{file.fid}}" target="_blank"> <button class="viewbtn" style="border-left: 1px solid royalblue">
-            <img src="{% static 'main/images/view_button.jpg' %}" />
-          </button></a>
-        </td>
-        {% comment %} <td>
-          <button class="editbtn" style="border-left: 1px solid royalblue">
-            <img src="{% static 'main/images/edit_button.png' %}" />
-          </button>
-        </td> {% endcomment %}
-        <td>
-        <a href="/delete/{{file.fid}}"> <button type="submit" class="delbtn" style="border-left: 1px solid royalblue">
-            <img src="{% static 'main/images/delete_button.png' %}" />
-          </button></a>
-        </td>
-      </tr>
-      {% endfor %}
-      
-    </table>
-    <!-- ------------------------------ TABLE ---------------------------------- -->
+<table class="items-table">
+  <tr class="items-table-row">
+    <th>SERIAL NO.</th>
+    <th>FILE NAME</th>
+    <th>UPLOADED ON</th>
+    <th>FILE SIZE</th>
+    <th>VIEW</th>
+    {% comment %} <th>EDIT</th> {% endcomment %}
+    <th>DELETE</th>
+  </tr>
+  {% for file in files %}
+  <tr class="items-table-row">
+    <td>{{forloop.counter}}</td>
+    <td>{{file.file_name}}</td>
+    <td>{{file.created_at}}</td>
+    <td>{{file.file_size}}</td>
+    <td>
+      <a href="/view/{{file.fid}}" target="_blank"> <button class="viewbtn" style="border-left: 1px solid royalblue">
+          <img src="{% static 'main/images/view_button.jpg' %}" />
+        </button></a>
+    </td>
+    {% comment %} <td>
+      <button class="editbtn" style="border-left: 1px solid royalblue">
+        <img src="{% static 'main/images/edit_button.png' %}" />
+      </button>
+    </td> {% endcomment %}
+    <td>
+      <a href="/delete/{{file.fid}}"> <button onclick="confirmation()" type="submit" class="delbtn"
+          style="border-left: 1px solid royalblue">
+          <img src="{% static 'main/images/delete_button.png' %}" />
+        </button></a>
+    </td>
+  </tr>
+  {% endfor %}
 
- {% endblock content%}
+</table>
+<script>
+  function confirmation() {
+    alert("Are you sure you want to delete the file?");
+  }
+</script>
+<!-- ------------------------------ TABLE ---------------------------------- -->
+
+{% endblock content%}
