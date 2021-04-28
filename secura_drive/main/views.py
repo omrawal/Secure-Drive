@@ -90,7 +90,8 @@ def register(request):
         user = authenticate(
             request, username=data['username'], password=data['password'])
         djangoLogin(request, user)
-
+        save_user(imgPath='temp/test_img.png',
+                  username=data['username'])
         return redirect('/drive')
     if(not is_temp_empty()):
         empty_temp_folder()
@@ -103,13 +104,16 @@ def login(request):
         username = request.POST['username']
         password = request.POST['password']
         user = authenticate(request, username=username, password=password)
-        if user is not None:
+        res = authenticateUser(
+            imgPath='temp/test_img.png', username=username)
+        if user is not None and res == True:
             djangoLogin(request, user)
             return redirect('/drive')
         else:
             return redirect('/login')
     if(not is_temp_empty()):
         empty_temp_folder()
+    capture_image_from_cam_into_temp()
     return render(request, 'main/login.html')
 
 
