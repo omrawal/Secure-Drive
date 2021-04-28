@@ -8,6 +8,9 @@ from django.views.decorators.csrf import csrf_protect
 from .models import *
 from django.contrib.auth import authenticate, login as djangoLogin, logout as djangoLogout
 from django.contrib.auth.decorators import login_required
+from .cam_capture import capture_image_from_cam_into_temp, is_temp_empty, empty_temp_folder
+from .face_rec import save_user, authenticateUser
+
 
 # Create your views here.
 KEY = b'NtEvVBWbzSEBu6axGA21Aw6pt3MsO1zFM_mCu9Al8oM='
@@ -77,6 +80,7 @@ def view_file(request, id):
 @csrf_protect
 def register(request):
     if request.method == 'POST':
+        capture_image_from_cam_into_temp()
         data = request.POST
         user = User.objects.create_user(username=data['username'], email=data['email'],
                                         password=data['password'], first_name=data['first_name'], last_name=data['last_name'])
@@ -86,8 +90,10 @@ def register(request):
         user = authenticate(
             request, username=data['username'], password=data['password'])
         djangoLogin(request, user)
-        return redirect('/drive')
 
+        return redirect('/drive')
+    if(not is_temp_empty()):
+        empty_temp_folder()
     return render(request, 'main/login.html')
 
 
@@ -102,6 +108,8 @@ def login(request):
             return redirect('/drive')
         else:
             return redirect('/login')
+    if(not is_temp_empty()):
+        empty_temp_folder()
     return render(request, 'main/login.html')
 
 
