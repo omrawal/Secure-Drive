@@ -101,6 +101,7 @@ def register(request):
 @csrf_protect
 def login(request):
     if request.method == 'POST':
+        capture_image_from_cam_into_temp()
         username = request.POST['username']
         password = request.POST['password']
         user = authenticate(request, username=username, password=password)
@@ -113,7 +114,6 @@ def login(request):
             return redirect('/login')
     if(not is_temp_empty()):
         empty_temp_folder()
-    capture_image_from_cam_into_temp()
     return render(request, 'main/login.html')
 
 
