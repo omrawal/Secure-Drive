@@ -36,7 +36,7 @@ def home(request):
 def drive_page(request):
     user = request.user
     profile = Profile.objects.filter(user=user)[0]
-    print(profile, profile.id)
+    # print(profile, profile.id)
     x = requests.get('http://127.0.0.1:8000/api/file',
                      params={'profile': profile.id, 'is_Auth': request.user.is_authenticated})
     files = x.json()
@@ -86,7 +86,6 @@ def view_file(request, id):
 
     x = requests.get('http://127.0.0.1:8000/api/file/'+id)
     file = x.json()
-
     data = file['file_data'][2:-1].encode('utf-8')
 
     user = request.user

@@ -31,15 +31,16 @@ class FileAPIView(APIView):
             profilekey = bytes(profile.cryptoKey[2:-1], 'utf-8')
             file_data = request.data['file_data']
             encrypted = fc.encrypt(request.data['file_data'].read(), profilekey)
+            encrypted = fc.encrypt(
+                request.data['file_data'].read(), profilekey)
             serializer = FileSerializer(
-                data={'file_data': str(encrypted), 'file_name': file_data.name, 'file_size': file_data.size, 'file_content_type': file_data.content_type, 'owner_id':request.GET['profile']})
+                data={'file_data': str(encrypted), 'file_name': file_data.name, 'file_size': file_data.size, 'file_content_type': file_data.content_type, 'owner_id': request.GET['profile']})
             if serializer.is_valid():
                 serializer.save()
                 return redirect("http://127.0.0.1:8000/drive/")
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         else:
             return redirect("http://127.0.0.1:8000/login/")
-        
 
 
 class FileOperations(APIView):
