@@ -90,6 +90,7 @@ DATABASES = {
         'ENGINE': 'djongo',
         'NAME': 'secura_drive',
         'CLIENT': {
+            # 'host': 'mongodb+srv://test:test@securadrive.oxwdp.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',
             'host': 'mongodb+srv://admin:admin123@cluster0.h2pgu.mongodb.net/secura_drive?retryWrites=true&w=majority',
         }
     }

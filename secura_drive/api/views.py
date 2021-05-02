@@ -9,6 +9,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from rest_framework import generics
 import api.file_crypto as fc
+from main.models import Profile
 
 KEY = b'NtEvVBWbzSEBu6axGA21Aw6pt3MsO1zFM_mCu9Al8oM='
 # Create your views here.
@@ -26,17 +27,19 @@ class FileAPIView(APIView):
     def post(self, request):
         if 'profile' in request.GET:
             print(request.GET['profile'])
+            profile = Profile.objects.filter(id=request.GET['profile'])[0]
+            profilekey = bytes(profile.cryptoKey[2:-1], 'utf-8')
             file_data = request.data['file_data']
-            encrypted = fc.encrypt(request.data['file_data'].read(), KEY)
+            encrypted = fc.encrypt(
+                request.data['file_data'].read(), profilekey)
             serializer = FileSerializer(
-                data={'file_data': str(encrypted), 'file_name': file_data.name, 'file_size': file_data.size, 'file_content_type': file_data.content_type, 'owner_id':request.GET['profile']})
+                data={'file_data': str(encrypted), 'file_name': file_data.name, 'file_size': file_data.size, 'file_content_type': file_data.content_type, 'owner_id': request.GET['profile']})
             if serializer.is_valid():
                 serializer.save()
                 return redirect("http://127.0.0.1:8000/drive/")
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         else:
             return redirect("http://127.0.0.1:8000/login/")
-        
 
 
 class FileOperations(APIView):
