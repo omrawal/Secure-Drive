@@ -7,6 +7,15 @@
     <div class="row clearfix">
       <div class="col col-6 login--l">
         <div class="title"><span class="text">Login</span></div>
+
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %} style = "margin-left: 50px ; color: #e84a5f">{{ message }} </li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+
         <div class="login--body">
           <form action="{% url 'login' %}" method="post">
             {% csrf_token %}
@@ -49,19 +58,19 @@
             </label>
             <label>
               <div class="label">Email address</div>
-              <input type="email" name="email" required />
+              <input type="email" name="email" required/>
             </label>
             <div class="row">
               <div class="col">
                 <label>
                   <div class="label">Password</div>
-                  <input type="password" name="password" required />
+                  <input type="password" name="password" minlength="8" required />
                 </label>
               </div>
               <div class="col">
                 <label>
                   <div class="label">Confirm password</div>
-                  <input type="password" required />
+                  <input type="password" minlength="8" required />
                 </label>
               </div>
             </div>

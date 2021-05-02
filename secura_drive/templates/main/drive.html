@@ -5,7 +5,7 @@
 <!-- ------------------------------ BUTTON ---------------------------------- -->
 <form enctype="multipart/form-data" method="post" action="/api/file?profile={{profile.id}}">{% csrf_token %}
   <button type-"submit" class="addbtn" style="width:150px">
-    <input type="file" name="file_data" />
+    <input type="file" name="file_data" required/>
     <img src="{% static 'main/images/add_button.png' %}" />
   </button>
 </form>
@@ -67,6 +67,7 @@
   function confirmation() {
     alert("Are you sure you want to delete the file?");
   }
+
 </script>
 <!-- ------------------------------ TABLE ---------------------------------- -->
 

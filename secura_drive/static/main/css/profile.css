@@ -1,3 +1,8 @@
+*{
+  margin:0;
+  padding: 0;
+}
+
 .userprofile {
   font: 16px Montserrat, sans-serif;
 }
@@ -9,14 +14,101 @@
   width: 100%;
   padding-bottom: 20px;
   font-size: 16px;
-  text-align: center;
 }
 
 .content {
   border-collapse: collapse;
-  width: 90%;
-  margin-left: 70px;
-  padding: 8px;
+  width: 20%;
+  text-align: center;
+  /* padding: 8px; */
   font-size: large;
+  margin-left: 600px;
   /* background-color: #f2f2f2; */
+}
+
+/* .wrapper{
+  height: 300px;
+  width: 300px;
+  /* text-align: center; */
+  /* position: relative; */
+  /* border: 5px solid; */
+  /* border-radius: 50%; */
+  /* background: {% 'main/images/profile.jpg'); */
+  /* background-size: 100% 100%; */
+  /* margin-left: 100px auto; */
+  /* margin-right: 100px; */
+/* }  */
+
+/* .my_file{
+  position: relative;
+  bottom: 0;
+  outline: none;
+  color: transparent;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 15px 120px;
+  cursor: pointer;
+  transition: 0.5s;
+}
+
+
+.my_file::-webkit-file-upload-button{
+  visibility: hidden;
+} */
+
+
+
+
+
+
+
+.profile-pic-div{
+  height: 200px;
+  width: 200px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  border-radius: 50%;
+  overflow: hidden;
+  border: 1px solid grey;
+}
+
+#photo{
+  height: 100%;
+  width: 100%;
+}
+
+/* #file{
+  height: 40px;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  background: rgba(0, 0, 0, 0.7);
+  color: wheat;
+  line-height: 30px;
+  font-family: sans-serif;
+  font-size: 15px;
+  cursor: pointer;
+  display: none;
+} */
+
+#uploadBtn{
+  height: 40px;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  background: rgba(0, 0, 0, 0.7);
+  color: wheat;
+  line-height: 30px;
+  font-family: sans-serif;
+  font-size: 15px;
+  cursor: pointer;
+  display: none;
 }
