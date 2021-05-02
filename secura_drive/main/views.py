@@ -73,7 +73,7 @@ def profile(request):
     total_file_size=str(round(total_file_size[0],2))+total_file_size[1]
     
 
-    return render(request, 'main/profile.html', {'user': user, 'profile': profile, 'is_Auth': request.user.is_authenticated,'file_length': len(files), 'total_file_size': total_file_size,'picture':profile.picture})
+    return render(request, 'main/profile.html', {'user': user, 'profile': profile, 'is_Auth': request.user.is_authenticated,'file_length': len(files), 'total_file_size': total_file_size})
 
 
 def delete_file(request, id):
@@ -106,12 +106,13 @@ def register(request):
         user = User.objects.create_user(username=data['username'], email=data['email'],
                                         password=data['password'], first_name=data['first_name'], last_name=data['last_name'])
         user.save()
-        profile = Profile(user=user,picture='temp/test_image.png')
+        profile = Profile(user=user)
         profile.save()
         user = authenticate(
             request, username=data['username'], password=data['password'])
         djangoLogin(request, user)
-
+        save_user(imgPath='temp/test_img.png',
+                  username=data['username'])
         return redirect('/drive')
     if(not is_temp_empty()):
         empty_temp_folder()
@@ -121,14 +122,16 @@ def register(request):
 @csrf_protect
 def login(request):
     if request.method == 'POST':
+        capture_image_from_cam_into_temp()
         username = request.POST['username']
         password = request.POST['password']
         user = authenticate(request, username=username, password=password)
-        if user is not None:
+        res = authenticateUser(
+            imgPath='temp/test_img.png', username=username)
+        if user is not None and res == True:
             djangoLogin(request, user)
             return redirect('/drive')
         else:
-            messages.info(request, 'Username or Password incorrect')
             return redirect('/login')
     if(not is_temp_empty()):
         empty_temp_folder()
