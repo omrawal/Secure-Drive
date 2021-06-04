@@ -10,12 +10,10 @@ from .models import *
 from django.contrib.auth import authenticate, login as djangoLogin, logout as djangoLogout
 from django.contrib.auth.decorators import login_required
 from .cam_capture import capture_image_from_cam_into_temp, is_temp_empty, empty_temp_folder
-# from .face_rec import save_user, authenticateUser
-
+from .face_rec import save_user, authenticateUser
 
 # Create your views here.
-KEY = b'NtEvVBWbzSEBu6axGA21Aw6pt3MsO1zFM_mCu9Al8oM='
-
+# KEY= b'NtEvVBWbzSEBu6axGA21Aw6pt3MsO1zFM_mCu9Al8oM='
 
 def format_bytes(size):
     # 2**10 = 1024
@@ -94,6 +92,7 @@ def view_file(request, id):
     profilekey = bytes(profile.cryptoKey[2:-1], 'utf-8')
 
     decrypted = fc.decrypt(data, profilekey)
+#    print(decrypted) 
 
     return HttpResponse(decrypted, content_type=file['file_content_type'])
 

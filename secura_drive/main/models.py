@@ -1,5 +1,5 @@
 from django.db import models
-from .file_crypto import generateKey
+from api.file_crypto import generateKey
 from django.contrib.auth.models import User
 import uuid
 

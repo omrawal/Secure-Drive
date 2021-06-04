@@ -11,9 +11,9 @@ from rest_framework import generics
 import api.file_crypto as fc
 from main.models import Profile
 
-KEY = b'NtEvVBWbzSEBu6axGA21Aw6pt3MsO1zFM_mCu9Al8oM='
-# Create your views here.
 
+# Create your views here.
+# KEY = b'NtEvVBWbzSEBu6axGA21Aw6pt3MsO1zFM_mCu9Al8oM='
 
 class FileAPIView(APIView):
     def get(self, request):
@@ -31,8 +31,6 @@ class FileAPIView(APIView):
             profilekey = bytes(profile.cryptoKey[2:-1], 'utf-8')
             file_data = request.data['file_data']
             encrypted = fc.encrypt(request.data['file_data'].read(), profilekey)
-            encrypted = fc.encrypt(
-                request.data['file_data'].read(), profilekey)
             serializer = FileSerializer(
                 data={'file_data': str(encrypted), 'file_name': file_data.name, 'file_size': file_data.size, 'file_content_type': file_data.content_type, 'owner_id': request.GET['profile']})
             if serializer.is_valid():
