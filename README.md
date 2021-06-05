@@ -18,3 +18,4 @@ This Web application helps users save files in encrypted format at their local s
 ## Please open an issue if
 * you have any suggestion to improve this project
 * you noticed any problem or error
+## Also view  `Desktop Version` of this WebApp [Safe-Storage](https://github.com/omrawal/Safe-Storage)
